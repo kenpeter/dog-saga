@@ -6,12 +6,13 @@ import { takeLatest, call, put } from "redux-saga/effects";
 // api
 import axios from "axios";
 
-// listen to action, callback func handles result
+// 1. generator
+// 2. 1 flow action
 export function* watcherSaga() {
   yield takeLatest("API_CALL_REQUEST", workerSaga);
 }
 
-// api call and return promise
+// promise
 function fetchDog() {
   return axios({
     method: "get",
@@ -21,18 +22,16 @@ function fetchDog() {
 
 function* workerSaga() {
   try {
-    // 1. similar to async await
-    // 2. yeild === await, call(promise)
-    // 3. call(func_name, param)
+    // 1. wait promise, result
     const response = yield call(fetchDog);
     // msg
     const dog = response.data.message;
 
-    // await dispatch action + data
+    // dispatch ui change
     yield put({ type: "API_CALL_SUCCESS", dog });
   
   } catch (error) {
-    // await dispatch action + error
+    // dispatch ui change
     yield put({ type: "API_CALL_FAILURE", error });
   }
 }

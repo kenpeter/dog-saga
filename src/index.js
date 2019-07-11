@@ -11,7 +11,7 @@ import createSagaMiddleware from "redux-saga";
 // provider
 import { Provider } from "react-redux";
 
-// switch
+// if else
 import { reducer } from "./redux";
 // 1 flow entry
 import { watcherSaga } from "./saga";
@@ -31,6 +31,7 @@ let store = createStore(
 // start to listen 1 flow
 sagaMiddleware.run(watcherSaga);
 
+// provider..
 ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change

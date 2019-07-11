@@ -1,9 +1,12 @@
+// react
 import React, { Component } from "react";
 
+// higher order
 import { connect } from "react-redux";
 
 class App extends Component {
   render() {
+    // loading, data, fire, err
     const { fetching, dog, onRequestDog, error } = this.props;
 
     return (
@@ -34,16 +37,21 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
+    // loading
     fetching: state.fetching,
+    // data
     dog: state.dog,
+    // err
     error: state.error
   };
 };
 
 const mapDispatchToProps = dispatch => {
+  // local method, fire event
   return {
     onRequestDog: () => dispatch({ type: "API_CALL_REQUEST" })
   };
 };
 
+// connect
 export default connect(mapStateToProps, mapDispatchToProps)(App);
