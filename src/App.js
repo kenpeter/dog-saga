@@ -46,11 +46,19 @@ const mapStateToProps = state => {
   };
 };
 
+/*
+// mapDispatchToProps: func, dispatch, return, key & func
 const mapDispatchToProps = dispatch => {
   // local method, fire event
   return {
     onRequestDog: () => dispatch({ type: "API_CALL_REQUEST" })
   };
+};
+*/
+
+// mapDispatchToProps: obj, key & func
+const mapDispatchToProps = {
+  onRequestDog: () => ({ type: "API_CALL_REQUEST" })
 };
 
 // connect
